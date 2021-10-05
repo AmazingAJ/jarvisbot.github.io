@@ -1,0 +1,72 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="chat.css">
+    <title>Jarvis</title>
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <!--help desk-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" 
+    integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" 
+    crossorigin="anonymous" referrerpolicy="no-referrer" >
+    <link href="chat.css" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="custom.js"></script>
+    <link href="jquery.convform.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="jquery.convform.js"></script>
+</head>
+<body>
+    <header>
+        <div class = "main">
+            <div class="logo">
+                <img src = "logo_1.png">
+            </div>
+            <ul>
+                <li class="active"><a href = "#">Home</a></li>
+                <li><a href = "https://discord.com/api/oauth2/authorize?client_id=892289290304884767&permissions=2147871808&scope=bot">Invite Bot
+                </a></li>
+                <li><a href = "https://amazingaj.itch.io/">Itch.io</a></li>
+                <li><a href = "about_us.html">About Us</a></li>
+                <li><a href = "https://www.youtube.com/channel/UCdHqfqWQbiBOpuswpqXy_Og">YT</a></li>
+            </ul>
+        </div>
+        <div class="title">
+            <h1>JARVIS - DISCORD BOT</h1>
+
+        </div>
+        <div class="button">
+            <a href="https://discord.gg/SpKyqfBqYG" class="btn">Our discord</a>
+            <a href="sample.py.html" class="btn">Source Code</a>
+        </div>
+    </header>
+    <!-- Chat Bot codes -->
+    <div class="chat_icon">
+        <i class="far fa-comment-alt"></i>
+
+    </div>
+    <div class="chat_box">
+        <div class="conv-form-wrapper">
+        <form action="" method="GET" class="hidden">
+            <select name="category" data-conv-question="Hello ! How can I help you">
+                <option value="help">Help with using the bot</option>
+                <option value="curious">Just curious</option>
+            </select>
+            <div data-conv-fork="category">
+                <div data-conv-case="yes">
+                     <input type="text" data-conv-question="A fellow programmer! Cool." data-no-answer="true">
+                </div>
+                <div data-conv-case="no">
+                    <select name="thought" data-conv-question="Have you ever thought about learning? Programming is fun!">
+                        <option value="yes">Yes</option>
+                        <option value="no">No..</option>
+                    </select>
+                </div>
+            </div>
+            
+        </form>
+        </div>
+    </div>
+</body>
+
+</html>

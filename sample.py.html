@@ -1,0 +1,199 @@
+<html>
+<head>
+<title>sample.py</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cc7832;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #6a8759;}
+.s3 { color: #6897bb;}
+.s4 { color: #808080;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+sample.py</font>
+</center></td></tr></table>
+<pre><span class="s0">import </span><span class="s1">discord</span>
+<span class="s0">from </span><span class="s1">random </span><span class="s0">import </span><span class="s1">choice</span>
+<span class="s0">import </span><span class="s1">requests</span>
+<span class="s0">from </span><span class="s1">bs4 </span><span class="s0">import </span><span class="s1">BeautifulSoup</span>
+<span class="s0">import </span><span class="s1">asyncio</span>
+<span class="s0">import </span><span class="s1">time</span>
+<span class="s0">import </span><span class="s1">speedtest</span>
+<span class="s0">import </span><span class="s1">datetime</span>
+<span class="s0">import </span><span class="s1">pyjokes</span>
+<span class="s0">from </span><span class="s1">dotenv </span><span class="s0">import </span><span class="s1">load_dotenv</span>
+
+<span class="s1">spam_var = (</span><span class="s2">'Hi'</span><span class="s0">, </span><span class="s2">'Hey there'</span><span class="s0">, </span><span class="s2">'Heloooo'</span><span class="s0">, </span><span class="s2">'HELLO'</span><span class="s0">, </span><span class="s2">'Hey dude!'</span><span class="s0">,</span>
+            <span class="s2">'..................................................'</span><span class="s1">)</span>
+<span class="s1">hi_var = (</span><span class="s2">'Hello :wave:'</span><span class="s0">, </span><span class="s2">'Hi there :wave:'</span><span class="s0">, </span><span class="s2">'Hey there :wave:'</span><span class="s0">, </span><span class="s2">'Heyo :wave:'</span><span class="s0">,</span>
+          <span class="s2">'Hey dude :wave: '</span><span class="s0">, </span><span class="s2">':)'</span><span class="s1">)</span>
+
+<span class="s1">gaming_links = (</span><span class="s2">'https://www.agame.com/'</span><span class="s0">, </span><span class="s2">'https://poki.com/'</span><span class="s0">,</span>
+                <span class="s2">'https://gemioli.com/'</span><span class="s0">,</span>
+                <span class="s2">'https://turbowarp.org/523967150?hqpen'</span><span class="s0">,</span>
+                <span class="s2">'https://www.arkadium.com/free-online-games/'</span><span class="s0">,</span>
+                <span class="s2">&quot;https://www.oneindia.com/games/&quot;</span><span class="s1">)</span>
+
+<span class="s1">sad_words = [</span><span class="s2">'sad'</span><span class="s0">, </span><span class="s2">'depressed'</span><span class="s0">, </span><span class="s2">'unhappy'</span><span class="s0">, </span><span class="s2">'miserable'</span><span class="s0">, </span><span class="s2">'depressing'</span><span class="s0">, </span><span class="s2">'sadness'</span><span class="s1">]</span>
+<span class="s1">sad_encourage = [</span><span class="s2">&quot;Don't be sad&quot;</span><span class="s0">, </span><span class="s2">&quot;Cheer up !:grin:&quot;</span><span class="s0">, </span><span class="s2">&quot;No Worries :grin:&quot;</span><span class="s0">, </span><span class="s2">'Be happy'</span><span class="s1">]</span>
+
+<span class="s1">shut_up_responce = [</span><span class="s2">'Oops !'</span><span class="s0">, </span><span class="s2">'?? '</span><span class="s0">, </span><span class="s2">'Was that message to me ? :thinking:'</span><span class="s1">]</span>
+
+<span class="s1">load_dotenv()</span>
+<span class="s1">client = discord.Client()</span>
+
+
+<span class="s0">def </span><span class="s1">news():</span>
+    <span class="s1">news = </span><span class="s2">'TOKEN here'</span>
+    <span class="s1">main_page = requests.get(news).json()</span>
+
+    <span class="s1">articles = main_page[</span><span class="s2">'articles'</span><span class="s1">]</span>
+    <span class="s1">head = []</span>
+    <span class="s0">for </span><span class="s1">ar </span><span class="s0">in </span><span class="s1">articles:</span>
+        <span class="s1">head.append(ar[</span><span class="s2">&quot;title&quot;</span><span class="s1">])</span>
+    <span class="s1">print(</span><span class="s2">'</span><span class="s0">\t\t\t\n\n </span><span class="s2">HEADLINES'</span><span class="s1">)</span>
+    <span class="s1">news_return = </span><span class="s2">f'''</span>
+  <span class="s2">Headlines</span>
+  <span class="s2">-</span><span class="s0">{</span><span class="s1">head[</span><span class="s3">1</span><span class="s1">]</span><span class="s0">}</span>
+  <span class="s2">-</span><span class="s0">{</span><span class="s1">head[</span><span class="s3">2</span><span class="s1">]</span><span class="s0">}</span>
+  <span class="s2">-</span><span class="s0">{</span><span class="s1">head[</span><span class="s3">3</span><span class="s1">]</span><span class="s0">}</span>
+  <span class="s2">-</span><span class="s0">{</span><span class="s1">head[</span><span class="s3">4</span><span class="s1">]</span><span class="s0">}</span>
+  <span class="s2">-</span><span class="s0">{</span><span class="s1">head[</span><span class="s3">5</span><span class="s1">]</span><span class="s0">}</span>
+  <span class="s2">'''</span>
+    <span class="s0">return </span><span class="s1">news_return</span>
+
+
+<span class="s0">def </span><span class="s1">ping_detector():</span>
+    <span class="s1">st = speedtest.Speedtest()</span>
+    <span class="s1">st.get_servers([])</span>
+    <span class="s1">Speed = </span><span class="s2">f&quot;&quot;&quot;Download speed - </span><span class="s0">{</span><span class="s1">st.download()</span><span class="s0">}</span>
+<span class="s2">Upload speed - </span><span class="s0">{</span><span class="s1">st.upload()</span><span class="s0">}</span>
+<span class="s2">Ping - </span><span class="s0">{</span><span class="s1">st.results.ping</span><span class="s0">}</span>
+<span class="s2">&quot;&quot;&quot;</span>
+    <span class="s0">return </span><span class="s1">Speed</span>
+
+
+<span class="s0">def </span><span class="s1">get_weather():</span>
+    <span class="s1">weather = </span><span class="s2">'current weather'</span>
+    <span class="s1">url = </span><span class="s2">f'https://www.google.com/search?q=</span><span class="s0">{</span><span class="s1">weather</span><span class="s0">}</span><span class="s2">'</span>
+    <span class="s1">r = requests.get(url)</span>
+    <span class="s1">data = BeautifulSoup(r.text</span><span class="s0">, </span><span class="s2">'html.parser'</span><span class="s1">)</span>
+    <span class="s1">temp = data.find(</span><span class="s2">&quot;div&quot;</span><span class="s0">, </span><span class="s1">class_=</span><span class="s2">&quot;BNeawe&quot;</span><span class="s1">).text</span>
+    <span class="s0">return </span><span class="s2">f'Current weather is </span><span class="s0">{</span><span class="s1">temp</span><span class="s0">}</span><span class="s2">'</span>
+
+
+<span class="s1">@client.event</span>
+<span class="s0">async def </span><span class="s1">on_ready():</span>
+    <span class="s0">await </span><span class="s1">client.change_presence(activity=discord.Activity(type=discord.ActivityType.listening</span><span class="s0">, </span><span class="s1">name=</span><span class="s2">'$help'</span><span class="s1">))</span>
+    <span class="s1">print(</span><span class="s2">'Logged in as {0.user}'</span><span class="s1">.format(client))</span>
+    <span class="s0">while True</span><span class="s1">:</span>
+        <span class="s1">print(</span><span class="s2">'Cleared'</span><span class="s1">)</span>
+        <span class="s0">await </span><span class="s1">asyncio.sleep(</span><span class="s3">10</span><span class="s1">)</span>
+        <span class="s0">with </span><span class="s1">open(</span><span class="s2">&quot;spam_detector.txt&quot;</span><span class="s0">, </span><span class="s2">&quot;r+&quot;</span><span class="s1">) </span><span class="s0">as </span><span class="s1">file:</span>
+            <span class="s1">file.truncate(</span><span class="s3">0</span><span class="s1">)</span>
+
+
+<span class="s1">@client.event</span>
+<span class="s0">async def </span><span class="s1">on_member_join(member):</span>
+    <span class="s0">await </span><span class="s1">member.create_dm()</span>
+    <span class="s0">await </span><span class="s1">member.dm_channel.send(</span>
+        <span class="s2">f'Hello </span><span class="s0">{</span><span class="s1">member.name</span><span class="s0">}</span><span class="s2">!! Welcome to Our Discord Server!'</span>
+    <span class="s1">)</span>
+
+
+<span class="s1">@client.event</span>
+<span class="s0">async def </span><span class="s1">on_message(message):</span>
+    <span class="s1">msg_sender = message.author</span>
+    <span class="s0">if </span><span class="s1">message.author == client.user:</span>
+        <span class="s0">return</span>
+    <span class="s1">msg = message.content</span>
+    <span class="s0">if </span><span class="s1">message.content.startswith(</span><span class="s2">'$hello'</span><span class="s1">):</span>
+        <span class="s0">await </span><span class="s1">message.channel.send(choice(hi_var))</span>
+    <span class="s0">if </span><span class="s1">message.content.startswith(</span><span class="s2">'$hi'</span><span class="s1">):</span>
+        <span class="s0">await </span><span class="s1">message.channel.send(choice(hi_var))</span>
+    <span class="s0">if </span><span class="s1">message.content.startswith(</span><span class="s2">'$hey'</span><span class="s1">):</span>
+        <span class="s0">await </span><span class="s1">message.channel.send(choice(hi_var))</span>
+    <span class="s0">if </span><span class="s1">message.content.startswith(</span><span class="s2">'$help'</span><span class="s1">):</span>
+        <span class="s0">await </span><span class="s1">message.channel.send(</span><span class="s2">''' 
+ Hey there ! I'm Jarvis, A discord bot build by  
+ AK and GB. 
+ Use the dollar sign ($) and type your commands. 
+ 
+ Commands available 
+ $news - displays headlines(news) 
+ $games - random online game links 
+ $weather - displays weather 
+ $id - displays your discord id 
+ $ping - displays net speed 
+ $date - today's date 
+ $time - current time 
+ $joke - displays random jokes 
+ $spam - spam messages 
+ $tb - get your time table image 
+ 
+ Features 
+ Spam filter 
+ 
+    '''</span><span class="s1">)</span>
+    <span class="s0">if </span><span class="s1">message.content.startswith(</span><span class="s2">'$news'</span><span class="s1">):</span>
+        <span class="s0">await </span><span class="s1">message.channel.send(news())</span>
+    <span class="s0">if </span><span class="s1">message.content.startswith(</span><span class="s2">'$weather'</span><span class="s1">):</span>
+        <span class="s0">await </span><span class="s1">message.channel.send(get_weather())</span>
+
+    <span class="s0">if </span><span class="s1">message.content.startswith(</span><span class="s2">'$spam'</span><span class="s1">):</span>
+        <span class="s1">print(message.author)</span>
+        <span class="s0">if </span><span class="s1">str(message.author.id) == </span><span class="s2">'890897899410567188' </span><span class="s0">or </span><span class="s1">str(message.author.id) == </span><span class="s2">'758326666753081345'</span><span class="s1">:</span>
+            <span class="s0">for </span><span class="s1">i </span><span class="s0">in </span><span class="s1">range(</span><span class="s3">40</span><span class="s1">):</span>
+                <span class="s0">await </span><span class="s1">message.channel.send(choice(spam_var))</span>
+        <span class="s0">else</span><span class="s1">:</span>
+            <span class="s0">await </span><span class="s1">message.channel.send(</span><span class="s2">&quot;You don't have permission to use this command :grin:&quot;</span><span class="s1">)</span>
+    <span class="s0">if </span><span class="s1">message.content.startswith(</span><span class="s2">'$games'</span><span class="s1">) </span><span class="s0">or </span><span class="s1">message.content.startswith(</span>
+            <span class="s2">'$game'</span><span class="s1">) </span><span class="s0">or </span><span class="s1">message.content.startswith(</span><span class="s2">'$gaming'</span><span class="s1">):</span>
+        <span class="s0">await </span><span class="s1">message.channel.send(choice(gaming_links))</span>
+        <span class="s0">await </span><span class="s1">message.channel.send(</span><span class="s2">'Click the above link! :point_up_2:'</span><span class="s1">)</span>
+    <span class="s0">if </span><span class="s2">'shut' </span><span class="s0">in </span><span class="s1">msg.lower():</span>
+        <span class="s0">await </span><span class="s1">message.channel.send(choice(shut_up_responce))</span>
+    <span class="s0">if </span><span class="s1">any(word </span><span class="s0">in </span><span class="s1">message.content </span><span class="s0">for </span><span class="s1">word </span><span class="s0">in </span><span class="s1">sad_words):</span>
+        <span class="s0">await </span><span class="s1">message.channel.send(choice(sad_encourage))</span>
+    <span class="s4"># spam detector</span>
+    <span class="s1">count = </span><span class="s3">0</span>
+    <span class="s0">with </span><span class="s1">open(</span><span class="s2">&quot;spam_detector.txt&quot;</span><span class="s0">, </span><span class="s2">&quot;r+&quot;</span><span class="s1">) </span><span class="s0">as </span><span class="s1">file:</span>
+        <span class="s0">for </span><span class="s1">lines </span><span class="s0">in </span><span class="s1">file:</span>
+            <span class="s0">if </span><span class="s1">lines.strip(</span><span class="s2">&quot;</span><span class="s0">\n</span><span class="s2">&quot;</span><span class="s1">) == str(message.author.id):</span>
+                <span class="s1">count += </span><span class="s3">1</span>
+        <span class="s1">file.writelines(</span><span class="s2">f&quot;</span><span class="s0">{</span><span class="s1">str(message.author.id)</span><span class="s0">}\n</span><span class="s2">&quot;</span><span class="s1">)</span>
+        <span class="s0">if </span><span class="s1">count &gt; </span><span class="s3">5</span><span class="s1">:</span>
+            <span class="s0">await </span><span class="s1">message.channel.send(</span><span class="s2">f'</span><span class="s0">{</span><span class="s1">message.author</span><span class="s0">} </span><span class="s2">**Stop spamming**'</span><span class="s1">)</span>
+            <span class="s1">time.sleep(</span><span class="s3">5</span><span class="s1">)</span>
+    <span class="s0">if </span><span class="s1">message.content.startswith(</span><span class="s2">'$id'</span><span class="s1">):</span>
+        <span class="s0">await </span><span class="s1">message.channel.send(</span><span class="s2">f'ID - </span><span class="s0">{</span><span class="s1">message.author.id</span><span class="s0">}</span><span class="s2">'</span><span class="s1">)</span>
+    <span class="s0">if </span><span class="s1">message.content.startswith(</span><span class="s2">'$ping'</span><span class="s1">):</span>
+        <span class="s0">await </span><span class="s1">message.channel.send(</span><span class="s2">'Plz Wait !'</span><span class="s1">)</span>
+        <span class="s0">await </span><span class="s1">message.channel.send(ping_detector())</span>
+    <span class="s0">if </span><span class="s1">message.content.startswith(</span><span class="s2">'$time'</span><span class="s1">):</span>
+        <span class="s0">await </span><span class="s1">message.channel.send(datetime.datetime.now().strftime(</span><span class="s2">&quot;%H:%M&quot;</span><span class="s1">))</span>
+    <span class="s0">if </span><span class="s1">message.content.startswith(</span><span class="s2">'$date'</span><span class="s1">):</span>
+        <span class="s0">await </span><span class="s1">message.channel.send(</span><span class="s2">f&quot;</span><span class="s0">{</span><span class="s1">datetime.datetime.now()</span><span class="s0">:</span><span class="s2">%d-%B-%Y</span><span class="s0">}</span><span class="s2">&quot;</span><span class="s1">)</span>
+    <span class="s0">if </span><span class="s1">message.content.startswith(</span><span class="s2">'$joke'</span><span class="s1">):</span>
+        <span class="s1">jokes = pyjokes.get_joke(language=</span><span class="s2">&quot;en&quot;</span><span class="s0">, </span><span class="s1">category=</span><span class="s2">&quot;neutral&quot;</span><span class="s1">)</span>
+        <span class="s0">await </span><span class="s1">message.channel.send(jokes)</span>
+    <span class="s0">if </span><span class="s2">'happy' </span><span class="s0">in </span><span class="s1">msg:</span>
+        <span class="s0">await </span><span class="s1">message.channel.send(</span><span class="s2">'Did something good happened ? :grin:'</span><span class="s1">)</span>
+    <span class="s1">print(</span><span class="s2">'</span><span class="s0">\n</span><span class="s2">Message - '</span><span class="s0">, </span><span class="s1">msg)</span>
+    <span class="s1">print(</span><span class="s2">'Sender - '</span><span class="s0">, </span><span class="s1">message.author)</span>
+    <span class="s1">print(</span><span class="s2">'</span><span class="s0">\n</span><span class="s2">'</span><span class="s1">)</span>
+    <span class="s0">if </span><span class="s2">'$tb' </span><span class="s0">in </span><span class="s1">msg:</span>
+        <span class="s0">await </span><span class="s1">message.channel.send(file=discord.File(</span><span class="s2">'tb.jpeg'</span><span class="s1">))</span>
+
+
+<span class="s4"># music bot codes here</span>
+
+
+<span class="s1">client.run(</span><span class="s2">'TOKEN here'</span><span class="s1">)</span>
+</pre>
+</body>
+</html>
